@@ -1,0 +1,56 @@
+<h1>ExamDemo#index</h1>
+
+<html>
+
+  <!--Head-->
+    <head>
+      <link rel="stylesheet" href="stylesheet.css">
+    </head>
+
+  <!--HEADING-->
+    <body>
+      <h2>Welcome</h2>
+    </body>
+  <p>Current selected county: <%= @cname %></p>
+  <!--DROPDOWN-->
+    <div class ="dropdown">
+      <select id ='cname' onchange ="populate(this);">
+        <option value="selectACounty">Select County</option>
+        <% @counties.each do|o|%>
+        <option value="<%= o %>">"<%= o %>"</option>
+        <% end %>
+      </select>
+    </div>
+    
+    <%= form_tag("/exam_demo", method: "post") do %>
+
+    <div class ="dropdown">
+      <select id ='sname' name='sname'>
+        <option value="selectASchool">Select School</option>
+        <% @schools.each do |o| %>
+        <option value="<%= o %>">"<%= o %>"</option>
+        <% end %>
+      </select>
+    </div>
+
+      Year: <input type="number" name="fname"><br>
+        <input name="SubmitButton" type="submit" value="Submit">
+    <% end %>
+
+	<input type="hidden" name="index.html" value "" />    
+</html>
+
+  <!--JAVASCRIPT-->
+    <script>
+      function populate(elem) {
+        var url =window.location.href;
+        if(url.indexOf("?") > -1) {
+          url+='&cname=' +elem.value;
+        } else {
+          url+='?cname=' +elem.value;
+        }
+        window.location.href =url; 
+	<!--document.getElementById('index.html').value = window.location.href; -->
+	
+      }
+    </script>
