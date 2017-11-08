@@ -4,7 +4,7 @@
 
   <!--Head-->
     <head>
-      <link rel="stylesheet" href="stylesheet.css">
+      <%= stylesheet_link_tag "semantic.min.css" %>
     </head>
 
   <!--HEADING-->
@@ -21,7 +21,7 @@
         <% end %>
       </select>
     </div>
-    
+
     <%= form_tag("/exam_demo", method: "post") do %>
 
     <div class ="dropdown">
@@ -37,7 +37,7 @@
         <input name="SubmitButton" type="submit" value="Submit">
     <% end %>
 
-	<input type="hidden" name="index.html" value "" />    
+	<input type="hidden" name="index.html" value "" />
 </html>
 
   <!--JAVASCRIPT-->
@@ -49,8 +49,8 @@
         } else {
           url+='?cname=' +elem.value;
         }
-        window.location.href =url; 
+        window.location.href =url;
 	<!--document.getElementById('index.html').value = window.location.href; -->
-	
+
       }
     </script>

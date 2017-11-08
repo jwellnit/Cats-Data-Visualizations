@@ -1,0 +1,24 @@
+{:uriI"„file://app/assets/javascripts/package.json?type=application/json&id=bdcc68946486380ef1529909b3fdf63854e4559292c1ef4a3f92211a9188ea3f:ET:load_pathI"app/assets/javascripts;T:filenameI"(app/assets/javascripts/package.json;T:	nameI"package;T:logical_pathI"package.json;T:content_typeI"application/json;T:sourceI"ú{
+  "name": "semantic-ui-css",
+  "version": "2.2.13",
+  "title": "Semantic UI",
+  "description": "CSS Only distribution of Semantic UI",
+  "homepage": "http://www.semantic-ui.com",
+  "author": "Jack Lukic <jack@semantic-ui.com>",
+  "license": "MIT",
+  "main": "semantic.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Semantic-Org/Semantic-UI-CSS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Semantic-Org/Semantic-UI/issues"
+  },
+  "dependencies": {
+    "jquery": "x.*"
+  }
+};T:metadata{	:dependencieso:Set:
+@hash}
+I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"@processors:type=application/json&file_type=application/json;TTI"6file-digest://app/assets/javascripts/package.json;TTF:charsetI"
+utf-8;F:digest"%YZi¶ÊÂ¨ù‚*P¥GÁEõ²c–RN¬:lengthiú:dependencies_digest"%¼™$¿9¹rzşU©T^è¾jT0†Íí·k”o-33:idI"Ebdcc68946486380ef1529909b3fdf63854e4559292c1ef4a3f92211a9188ea3f;F:
+mtimel+ğ’ˆY
