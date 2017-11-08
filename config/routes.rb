@@ -22,9 +22,9 @@ Rails.application.routes.draw do
   resources :exam_demo, :only => [:index, :create]
   resources :school, :only => [:index, :show]
   resources :dataexam, :only => [:index, :show]
-  resources :visualiztion1, :only => [:show]
-  resources :visualiztion2, :only => [:show]
-  resources :visualiztion3, :only => [:show]
+  resources :visualization1, :only => [:show]
+  resources :visualization2, :only => [:show]
+  resources :visualization3, :only => [:show]
   resources :home_page, :only => [:index]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
