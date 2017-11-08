@@ -1,2 +1,83 @@
+<html>
 <h1>Visualiztion3#show</h1>
 <p>Find me in app/views/visualiztion3/show.html.erb</p>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    
+      // Load package from google charts
+      google.charts.load('current', {'packages':['corechart']});
+      
+      // Draw the 2 pie charts
+      google.charts.setOnLoadCallback(drawSchoolA);
+      google.charts.setOnLoadCallback(drawSchoolB);
+      
+      //draw School A chart
+      function drawSchoolA() {
+        
+        //set up data
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Type');
+        data.addColumn('number', 'Percentage');
+        data.addRows([
+          ['Low Income', 89],
+          ['Other', 11]
+        ]);
+        
+        //create specifications
+        var options = {
+          title: 'Percentage Low Income vs Attendance vs Grad Rate',
+          colors: ['#fe6f5e','#3d0c02'],
+          is3D: true,
+        };
+        
+        //create + draw chart a
+        var chart = new google.visualization.PieChart(document.getElementById('schoolA_chart_div'));
+        chart.draw(data, options);
+      }
+      
+      function drawSchoolB(){
+        
+      //set up data
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Type');
+        data.addColumn('number', 'percentage');
+        data.addRows([
+          ['Low Income', 12],
+          ['Other', 88]
+        ]);
+        
+        //set up chart specifications
+        var options = {
+          title: 'Percentage Low Income vs Attendance vs Grad Rate',
+          colors: ['#3c1e62', '#aa8dc8'],
+          is3D: true,
+        };
+        
+        //create and draw chart
+        var chart = new google.visualization.PieChart(document.getElementById('schoolB_chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <table class = 'columns'>
+      <tr>
+        <td>SchoolAName, year </td>
+        <td>SchoolBName, year </td>
+      </tr>
+      <tr>
+      <td><div id="schoolA_chart_div" style="width: 900px; height: 500px;"></div></td>
+      <td><div id="schoolB_chart_div" style="width: 900px; height: 500px;"></div></td>
+      </tr>
+      <tr>
+        <td>Avg Attendance Rate Per Student: </td>
+        <td>Avg Attendance Rate Per Student: </td>
+      </tr>
+      <tr>
+        <td>Grad Rate: </td>
+        <td>Grad Rate: </td>
+      </tr>
+    </table>
+  </body>
+</html>
