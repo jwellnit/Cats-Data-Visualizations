@@ -1,6 +1,4 @@
 <html>
-<h1>Visualiztion3#show</h1>
-<p>Find me in app/views/visualiztion3/show.html.erb</p>
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -16,6 +14,9 @@
       function drawSchoolA() {
         
         //set up data
+        var low = <%= (@percLowIncome1)*10 %>;
+        var oth = <%= (1 - @percLowIncome1)*10 %>;
+        
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Type');
         data.addColumn('number', 'Percentage');
@@ -39,12 +40,15 @@
       function drawSchoolB(){
         
       //set up data
+        var low = <%= (@percLowIncome2)*10 %>;
+        var oth = <%= (1 - @percLowIncome2)*10 %>;
+        
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Type');
         data.addColumn('number', 'percentage');
         data.addRows([
-          ['Low Income', 12],
-          ['Other', 88]
+          ['Low Income', low],
+          ['Other', oth]
         ]);
         
         //set up chart specifications
@@ -63,20 +67,20 @@
   <body>
     <table class = 'columns'>
       <tr>
-        <td>SchoolAName, year </td>
-        <td>SchoolBName, year </td>
+        <td><%= @school1 @year%> </td>
+        <td><%= @school2 @year%> </td>
       </tr>
       <tr>
       <td><div id="schoolA_chart_div" style="width: 900px; height: 500px;"></div></td>
       <td><div id="schoolB_chart_div" style="width: 900px; height: 500px;"></div></td>
       </tr>
       <tr>
-        <td>Avg Attendance Rate Per Student: </td>
-        <td>Avg Attendance Rate Per Student: </td>
+        <td>Avg Attendance Rate Per Student: <%= @attendanceRate1 %></td>
+        <td>Avg Attendance Rate Per Student: <%= @attendanceRate2 %></td>
       </tr>
       <tr>
-        <td>Grad Rate: </td>
-        <td>Grad Rate: </td>
+        <td>Grad Rate: <%= @gradRate1 %></td>
+        <td>Grad Rate: <%= @gradRate2 %></td>
       </tr>
     </table>
   </body>
