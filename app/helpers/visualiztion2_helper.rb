@@ -1,2 +1,0 @@
-module Visualiztion2Helper
-end

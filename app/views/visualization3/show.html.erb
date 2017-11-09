@@ -3,21 +3,21 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-    
+
       // Load package from google charts
       google.charts.load('current', {'packages':['corechart']});
-      
+
       // Draw the 2 pie charts
       google.charts.setOnLoadCallback(drawSchoolA);
       google.charts.setOnLoadCallback(drawSchoolB);
-      
+
       //draw School A chart
       function drawSchoolA() {
-        
+
         //set up data
-        var low = <%= (@percLowIncome1)*10 %>;
-        var oth = <%= (1 - @percLowIncome1)*10 %>;
-        
+        var low = <%= @percLowIncome1%>*10 ;
+        var oth = (1 - <%= @percLowIncome1 %>)*10;
+
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Type');
         data.addColumn('number', 'Percentage');
@@ -25,25 +25,25 @@
           ['Low Income', 89],
           ['Other', 11]
         ]);
-        
+
         //create specifications
         var options = {
           title: 'Percentage Low Income vs Attendance vs Grad Rate',
           colors: ['#fe6f5e','#3d0c02'],
           is3D: true,
         };
-        
+
         //create + draw chart a
         var chart = new google.visualization.PieChart(document.getElementById('schoolA_chart_div'));
         chart.draw(data, options);
       }
-      
+
       function drawSchoolB(){
-        
+
       //set up data
-        var low = <%= (@percLowIncome2)*10 %>;
-        var oth = <%= (1 - @percLowIncome2)*10 %>;
-        
+        var low = <%= @percLowIncome2%>*10 ;
+        var oth = (1 - <%= @percLowIncome2 %>)*10;
+
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Type');
         data.addColumn('number', 'percentage');
@@ -51,14 +51,14 @@
           ['Low Income', low],
           ['Other', oth]
         ]);
-        
+
         //set up chart specifications
         var options = {
           title: 'Percentage Low Income vs Attendance vs Grad Rate',
           colors: ['#3c1e62', '#aa8dc8'],
           is3D: true,
         };
-        
+
         //create and draw chart
         var chart = new google.visualization.PieChart(document.getElementById('schoolB_chart_div'));
         chart.draw(data, options);
@@ -68,8 +68,8 @@
   <body>
     <table class = 'columns'>
       <tr>
-        <td><%= @school1 @year%> </td>
-        <td><%= @school2 @year%> </td>
+        <td><%= @school1 %> <%= @year%> </td>
+        <td><%= @school2 %> <%= @year%> </td>
       </tr>
       <tr>
       <td><div id="schoolA_chart_div" style="width: 900px; height: 500px;"></div></td>
