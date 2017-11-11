@@ -1,2 +1,28 @@
-<h1>HomePage#index</h1>
-<p>Find me in app/views/home_page/index.html.erb</p>
+<%= form_tag("/visualization1/:id(.:format)", method: "get") do %>
+  <h2>Map of Districts by Full-Time Teacher Percentage</h2>
+  <%= label_tag(:year, "Academic Year Start:") %>
+  <%= select_tag(:year, options_for_select(@years)) %>
+  <%= label_tag(:county, "County:") %>
+  <%= select_tag(:county, options_for_select(@counties)) %>
+  <%= submit_tag("Go") %>
+<% end %>
+
+<%= form_tag("/visualization2/:id(.:format)", method: "get") do %>
+  <h2>Side-by-Side Bar Chart of 4-Year Graduation Rate and Attendance Rate for School and Distric</h2>
+  <%= label_tag(:year, "Academic Year Start:") %>
+  <%= select_tag(:year, options_for_select(@years)) %>
+  <%= label_tag(:district, "District:") %>
+  <%= select_tag(:district, options_for_select(@districts)) %>
+  <%= submit_tag("Go") %>
+<% end %>
+
+<%= form_tag("/visualization3/:id(.:format)", method: "get") do %>
+  <h2>Pie Charts of Low-Income Students with Graduation Rate and Attendance Rate for Two Schools</h2>
+  <%= label_tag(:year, "Academic Year Start:") %>
+  <%= select_tag(:year, options_for_select(@years)) %>
+  <%= label_tag(:school1, "School 1:") %>
+  <%= select_tag(:school1, options_for_select(@schools)) %>
+  <%= label_tag(:school2, "School 2:") %>
+  <%= select_tag(:school2, options_for_select(@schools)) %>
+  <%= submit_tag("Go") %>
+<% end %>

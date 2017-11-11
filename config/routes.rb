@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   #get 'exam_demo/index'
 
   #root 'exam_demo#index'
-  root 'visualization3#show'
+  root 'home_page#index'
 
   resources :exam_demo, :only => [:index, :create]
   resources :school, :only => [:index, :show]
