@@ -1,2 +1,91 @@
-<h1>Visualiztion1#show</h1>
-<p>Find me in app/views/visualiztion1/show.html.erb</p>
+<!-- <!DOCTYPE html>
+<h1>Visualization1</h1>
+<p>Find me in app/views/visualization1/show.html.erb</p>
+<meta charset="utf-8">
+<style>
+
+    .padistrict {
+        stroke: #000;
+        fill-opacity: .7;
+    }
+
+    .symbol {
+        fill: steelblue;
+        fill-opacity: .8;
+        stroke: #fff;
+    }
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="http://d3js.org/queue.v1.min.js"></script>
+<script>
+
+    var width = 3000,
+            height = 3000;
+
+    var radius = d3.scale.sqrt()
+            .domain([0, 1e6])
+            .range([0, 10]);
+
+    var path = d3.geo.path();
+    var color = d3.scale.category20();
+    var svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+    queue()
+            .defer(d3.json, "pa.json")
+            .await(ready);
+
+    function ready(error, pa, centroid) {
+        var countries = topojson.feature(pa, pa.objects.padistrict).features,
+                neighbors = topojson.neighbors(pa.objects.padistrict.geometries);
+
+        svg.selectAll(".padistrict")
+                .data(countries)
+                .enter().insert("path", ".graticule")
+                .attr("class",  function(d) {return "padistrict " + "id"+d.id; })
+                .attr("d", path)
+                .style("fill", function(d, i) { return color(d.color = d3.max(neighbors[i], function(n) { return countries[n].color; }) + 1 | 0); })
+                .on('mouseover', function(d, i) {
+
+                var currentState = this;
+                d3.select(this).style('fill-opacity', 1);
+                })
+                .on('mouseout', function(d, i) {
+                    d3.selectAll('path')
+                            .style({
+                                'fill-opacity':.7
+                            });
+                }); -->
+
+
+
+
+<!--/*ABOVE MINE*-->
+
+<h1>Visualization1</h1>
+<p>Find me in app/views/visualization1/show.html.erb</p>
+<!-- # <% if (@year) %>
+#   <p>I received an id of
+#      <%= @year %>.</p>
+#   <p>
+#   <% if (@county) %>
+#     That's the id for
+#     <%= @county.name.strip %>.
+#     <% else %>
+#       The id does not match any county.  You may wish to look at
+#       <%= link_to "the list of county" %>
+#     <% end %>
+# <% else %>
+#     <p> I did not receive the id parameter for the county.  You may wish to look at
+#     <%= link_to "the list of county" %>.
+# <% end %> -->
+<p>A map of PA School Districts</p>
+<div id="graph">
+</div>
+<%= javascript_include_tag('map') %>
+
+</p> -->

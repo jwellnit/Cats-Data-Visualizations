@@ -1,0 +1,55 @@
+/*.subunit.SCT { fill: #ddc; }
+.subunit.WLS { fill: #cdd; }
+.subunit.NIR { fill: #cdc; }
+.subunit.ENG { fill: #dcd; }
+.subunit.IRL { display: none; }*/
+
+/*.padistrict.id1402 { fill: #7dc; }
+.padistrict.id702 {fill: #c7d; }
+.padistrict.id901 {fill: #f00; }
+.padistrict.id404 {fill: #3cd; }
+.padistrict.id501 {fill: #ab2; }*/
+
+/*BELOW MINE*/
+body{
+  background-color: powderblue;
+}
+
+h1{
+  color: blue;
+}
+
+.padistrict{
+  fill: none;
+  color: black;
+  stroke: #a9a9a9;
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+/*g.features{
+  stroke: #d8d8d8;
+  stroke-width: 0.5;
+}
+
+g.features path:hover {
+ opacity: 0.5;
+}
+
+
+.tooltip {
+ font-weight: bold;
+ padding: 0.5rem;
+ border: 1px solid silver;
+ }
+
+ .hidden {
+ display: none;
+ }*/
+
+/*#graph{
+  position: absolute;
+  text-align: center;
+  font: 12px sans-serif;
+  pointer-events: none;
+}*/
