@@ -1,2 +1,62 @@
-<h1>Visualiztion2#show</h1>
-<p>Find me in app/views/visualiztion2/show.html.erb</p>
+<!-- This code is adapted from an existing code on Google Charts. Thus this code does use Google's Chart API -->
+<html>
+ <head>
+   <%= stylesheet_link_tag 'application', media: 'all' %>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+     //Load package from google charts
+      google.charts.load('current', {'packages':['corechart', 'bar']});
+     
+    //Set up the chart 
+      google.charts.setOnLoadCallback(drawChart);
+
+
+			//function
+			function drawChart() {
+			   
+						var info = ['School', 'Graduation Rate', 'Attendance'];
+						
+						while( @schools != nil ){
+							info.push(<%= @schools%>, <%= @schoolGradRate%>, <%= @schoolAttendanceRate%>);
+						}
+						
+						var data = google.visualization.arrayToDataTable(info);
+
+			      var options = {
+			        title: 'Graduation Rate and Attendance Rate',
+			        chartArea: {width: '50%'},
+			        hAxis: {
+			          title: 'Graduation Rate and Attendance Rate',
+			          minValue: 0,
+			          textStyle: {
+			            bold: true,
+			            fontSize: 12,
+			            color: '#4d4d4d'
+			          },
+			          titleTextStyle: {
+			            bold: true,
+			            fontSize: 18,
+			            color: '#4d4d4d'
+			          }
+			        },
+			        vAxis: {
+			          title: 'Schools',
+			          textStyle: {
+			            fontSize: 14,
+			            bold: true,
+			            color: '#848484'
+			          },
+			          titleTextStyle: {
+			            fontSize: 14,
+			            bold: true,
+			            color: '#848484'
+			          }
+			        }
+			      };
+			      var chart = new google.visualization.BarChart(document.getElementById('Bar_chart_div'));
+			      chart.draw(data, options);
+			    }
+
+ </head>	
+</html>
