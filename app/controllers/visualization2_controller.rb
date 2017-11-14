@@ -10,24 +10,41 @@ class Visualization2Controller < ApplicationController
       districtGrads = 0
       @schoolGradRate =Hash.new
       s.each do |c|
-        cc = DataMultiYearGradRate.where(state_school_id: c.state_school_id).where(academic_year_start: @year).where(time_period: 4).uniq.take.total_cohort
-        districtCohorts = districtCohorts + cc
-        cg = DataMultiYearGradRate.where(state_school_id: c.state_school_id).where(academic_year_start: @year).where(time_period: 4).uniq.take.total_grad
-        districtGrads = districtGrads + cg
-        @schoolGradRate[c.school_name] = (cg/cc) * 100
+        cc = DataMultiYearGradRate.where(state_school_id: c.state_school_id).where(academic_year_start: @year).where(time_period: 4).uniq.take
+        cg = DataMultiYearGradRate.where(state_school_id: c.state_school_id).where(academic_year_start: @year).where(time_period: 4).uniq.take
+        if (cc != nil && cg != nil && cc.total_cohort != nil && cg.total_grads != nil)
+          districtCohorts = districtCohorts + cc.total_cohort
+          districtGrads = districtGrads + cg.total_grads
+          @schoolGradRate[c.school_name] = (cg.total_grads/cc.total_cohort) * 100
+        else
+          @schoolGradRate[c.school_name] = 0
+        end
       end
-      @districtGradRate = (districtGrads/districtCohorts) * 100
+      if (districtCohorts != 0)
+        @districtGradRate = (districtGrads/districtCohorts) * 100
+      else
+        @districtGradRate = 0
+      end
       @schoolAttendanceRate = Hash.new
       districtWeightedRates = 0
       districtTotalEnroll = 0
       s.each do |k|
-        ka = DataSchoolPerformanceMeasure.where(state_school_id: k.state_school_id).where(academic_year_start: @year).uniq.take.attendance_rate
-        kc = DataPublicSchoolEnrollment.where(state_school_id: k.state_school_id).where(academic_year_start: @year).uniq.take.total
-        districtWeightedRates += ka*kc
-        districtTotalEnroll += kc
-        @schoolAttendanceRate[s.school_name] = ka
+        ka = DataSchoolPerformanceMeasure.where(state_school_id: k.state_school_id).where(academic_year_start: @year).uniq.take
+        kc = DataPublicSchoolEnrollment.where(state_school_id: k.state_school_id).where(academic_year_start: @year).uniq.take
+        if (ka != nil && kc != nil && ka.attendance_rate != nil && kc.total != nil)
+          districtWeightedRates = districtWeightedRates + ka.attendance_rate * kc.total
+          districtTotalEnroll = districtTotalEnroll + kc.total
+          @schoolAttendanceRate[k.school_name] = ka.attendance_rate
+        else
+          @schoolAttendanceRate[k.school_name] = 0
+        end
       end
-      @districtAttendanceRate = districtWeightedRates/districtTotalEnroll
+      if (districtTotalEnroll != 0)
+        @districtAttendanceRate = districtWeightedRates/districtTotalEnroll
+      else
+        @districtAttendanceRate = 0
+      end
+
     end
   end
 end
