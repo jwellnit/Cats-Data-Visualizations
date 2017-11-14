@@ -3,26 +3,26 @@ class Visualization2Controller < ApplicationController
     @year = params[:year]
     @district = params[:district]
     if (@district != nil && @year != nil)
-      d = District.find_by_lea_name(@district).uniq.pluck(:nces_lea_id)
-      s = School.where(nces_lea_id: d)
+      d = District.find_by_lea_name(@district).iu_id
+      s = School.where(iu_id: d)
       @schools = s.uniq.pluck(:school_name)
       districtCohorts = 0
       districtGrads = 0
       @schoolGradRate =Hash.new
       s.each do |c|
-        cc = DataMultiYearGradRate.where(state_school_id: c.state_school_id).where(academic_year_start: @year).where(time_period: 4).uniq.pluck(:total_cohort)
-        districtCohorts += cc
-        cg = DataMultiYearGradRate.where(state_school_id: c.state_school_id).where(academic_year_start: @year).where(time_period: 4).uniq.pluck(:total_grad)
-        districtGrads += cg
-        @schoolGradRate[c.school_name] = cg/cc
+        cc = DataMultiYearGradRate.where(state_school_id: c.state_school_id).where(academic_year_start: @year).where(time_period: 4).uniq.take.total_cohort
+        districtCohorts = districtCohorts + cc
+        cg = DataMultiYearGradRate.where(state_school_id: c.state_school_id).where(academic_year_start: @year).where(time_period: 4).uniq.take.total_grad
+        districtGrads = districtGrads + cg
+        @schoolGradRate[c.school_name] = (cg/cc) * 100
       end
-      @districtGradRate = districtGrads/districtCohorts
+      @districtGradRate = (districtGrads/districtCohorts) * 100
       @schoolAttendanceRate = Hash.new
       districtWeightedRates = 0
       districtTotalEnroll = 0
       s.each do |k|
-        ka = DataSchoolPerformanceMeasure.where(state_school_id: k.state_school_id).where(academic_year_start: @year).uniq.pluck(:attendance_rate)
-        kc = DataPublicSchoolEnrollment.where(state_school_id: k.state_school_id).where(academic_year_start: @year).uniq.pluck(:total)
+        ka = DataSchoolPerformanceMeasure.where(state_school_id: k.state_school_id).where(academic_year_start: @year).uniq.take.attendance_rate
+        kc = DataPublicSchoolEnrollment.where(state_school_id: k.state_school_id).where(academic_year_start: @year).uniq.take.total
         districtWeightedRates += ka*kc
         districtTotalEnroll += kc
         @schoolAttendanceRate[s.school_name] = ka
