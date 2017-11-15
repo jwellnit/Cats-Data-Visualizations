@@ -19,7 +19,8 @@ Rails.application.routes.draw do
 
   #root 'exam_demo#index'
 
-  root 'home_page#index'
+  #root 'home_page#index'
+ root 'visualization1#show'
 
  # root 'visualization3#show'
 
