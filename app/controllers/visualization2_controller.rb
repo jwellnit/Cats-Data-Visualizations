@@ -3,8 +3,8 @@ class Visualization2Controller < ApplicationController
     @year = params[:year]
     @district = params[:district]
     if (@district != nil && @year != nil)
-      d = District.find_by_lea_name(@district).nces_lea_id
-      s = School.where(nces_lea_id: d)
+      d = District.find_by_lea_name(@district).state_lea_id
+      s = School.where(state_lea_id: d)
       @schools = s.uniq.pluck(:school_name)
       districtCohorts = 0
       districtGrads = 0
