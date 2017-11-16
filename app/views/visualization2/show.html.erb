@@ -7,20 +7,83 @@
 
      //Load package from google charts
       google.charts.load('current', {'packages':['corechart', 'bar']});
-     
-    //Set up the chart 
+
+    //Set up the chart
+      google.charts.setOnLoadCallback(drawChart);
+
+
+                        //function
+                        function drawChart() {
+
+                      var data = new google.visualization.DataTable();
+                            data.addColumn('string', 'School');
+                            data.addColumn('number', 'Graduation Rate');
+                                                                data.addColumn('number', 'Attendance');
+
+                                                          // data.addRows([
+  //                                                                        ['School One', 89, 69],
+  //                                                                                                                 ['School Two', 25, 50],
+  //                                                                                                                  ['School Three', 90, 85]
+  //                                                                       ]);
+
+  data.addRows([
+
+
+                                                                                                                 //add schools
+                                                                                                                                                 <% @schools.each do |c|%>
+                                                                                                                                                         ["<%= c%>", <%=  @schoolGradRate[c]%>, <%=  @schoolAttendanceRate[c]%>],
+                                                                                                                                                 <% end %>
+                                                                                                          //add district
+
+                                                                                                           // ["<%= @district%>", <%= @districtGradRate%>, <%= @districtAttendanceRate%>]
+
+
+                                        ]);
+                      var options = {
+                        title: 'Graduation Rate and Attendance Rate',
+                        chartArea: {width: '50%'},
+                                                colors: ['#B8860B', '#9400D3'],
+                              vAxis: {
+                                                           title: 'Schools',
+                                                           minValue: 0,
+                                                           textStyle: {
+                                                             bold: true,
+                                                             fontSize: 14,
+                                                             color: '#4d4d4d'
+                                                   },
+                             }
+                      };
+                      var chart = new google.visualization.BarChart(document.getElementById('Bar_chart_div'));
+                      chart.draw(data, options);
+                            }
+</script>
+ </head>
+                                 <body>
+                                          <div id="Bar_chart_div"> </div>
+                                 </body>
+</html><!-- This code is adapted from an existing code on Google Charts. Thus this code does use Google's Chart API -->
+<html>
+ <head>
+   <%= stylesheet_link_tag 'application', media: 'all' %>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+     //Load package from google charts
+      google.charts.load('current', {'packages':['corechart', 'bar']});
+
+    //Set up the chart
       google.charts.setOnLoadCallback(drawChart);
 
 
 			//function
 			function drawChart() {
-			   
+
 						var info = ['School', 'Graduation Rate', 'Attendance'];
-						
+
 						while( @schools != nil ){
 							info.push(<%= @schools%>, <%= @schoolGradRate%>, <%= @schoolAttendanceRate%>);
 						}
-						
+
 						var data = google.visualization.arrayToDataTable(info);
 
 			      var options = {
@@ -58,5 +121,5 @@
 			      chart.draw(data, options);
 			    }
 
- </head>	
+ </head>
 </html>
