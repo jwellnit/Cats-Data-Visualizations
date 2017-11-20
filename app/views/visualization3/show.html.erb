@@ -63,6 +63,11 @@
         var chart = new google.visualization.PieChart(document.getElementById('schoolB_chart_div'));
         chart.draw(data, options);
       }
+      
+  $(window).resize(function(){
+	  	drawShcoolA();
+	  	drawSchoolB();
+	});
     </script>
   </head>
   <body>
