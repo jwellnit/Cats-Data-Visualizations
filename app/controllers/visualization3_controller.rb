@@ -29,8 +29,18 @@ class Visualization3Controller < ApplicationController
       else
         @gradRate2 = 0
       end
-      @percLowIncome1 = 0.2
-      @percLowIncome2 = 0.7
+      li1 = DataPublicSchoolLowIncome.where(state_school_id: s1.state_school_id).where(academic_year_start: @year).take
+      if (li1 != nil && li1.low_income_enrollment != nil && li1.enrollment != nil)
+        @percLowIncome1 = li1.low_income_enrollment/li1.enrollment
+      else
+        @percLowIncome1 = li1.low_income_enrollment/li1.enrollment
+      end
+      li2 = DataPublicSchoolLowIncome.where(state_school_id: s2.state_school_id).where(academic_year_start: @year).uniq.take
+      if (li2 != nil && li2.low_income_enrollment != nil && li2.enrollment != nil)
+        @percLowIncome2 = li2.low_income_enrollment/li2.enrollment
+      else
+        @percLowIncome2 = 0
+      end
     end
   end
 end
