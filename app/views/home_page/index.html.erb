@@ -1,3 +1,7 @@
+<header>
+  <link rel=”stylesheet” href=”css/bootstrap.css”>
+</header>
+
 <%= form_tag("/visualization1/:id(.:format)", method: "get") do %>
   <h2>Map of Districts by Full-Time Teacher Percentage</h2>
   <%= label_tag(:year, "Academic Year Start:") %>
