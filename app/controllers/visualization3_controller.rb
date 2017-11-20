@@ -18,28 +18,28 @@ class Visualization3Controller < ApplicationController
       sc1 = DataMultiYearGradRate.where(state_school_id: s1.state_school_id).where(academic_year_start: @year).where(time_period: 4).uniq.take
       sg1 = DataMultiYearGradRate.where(state_school_id: s1.state_school_id).where(academic_year_start: @year).where(time_period: 4).uniq.take
       if (sc1 != nil && sg1 != nil && sc1.total_cohort != nil && sg1.total_grads != nil)
-        @gradRate1 = (sg1.total_grads/sc1.total_cohort)*100
+        @gradRate1 = (sg1.total_grads.to_f/sc1.total_cohort.to_f)*100
       else
         @gradRate1 = 0
       end
       sc2 = DataMultiYearGradRate.where(state_school_id: s2.state_school_id).where(academic_year_start: @year).where(time_period: 4).uniq.take
       sg2 = DataMultiYearGradRate.where(state_school_id: s2.state_school_id).where(academic_year_start: @year).where(time_period: 4).uniq.take
       if (sc2 != nil && sg2 != nil && sc2.total_cohort != nil && sg2.total_grads != nil)
-        @gradRate2 = (sg2.total_grads/sc2.total_cohort)*100
+        @gradRate2 = (sg2.total_grads.to_f/sc2.total_cohort.to_f)*100
       else
         @gradRate2 = 0
       end
-      li1 = DataPublicSchoolLowIncome.where(state_school_id: s1.state_school_id).where(academic_year_start: @year).take
+      li1 = DataPublicSchoolLowIncome.where(state_school_id: s1.state_school_id).where(academic_year_start: @year).uniq.take
       if (li1 != nil && li1.low_income_enrollment != nil && li1.enrollment != nil)
-        @percLowIncome1 = li1.low_income_enrollment/li1.enrollment
+        @percLowIncome1 = li1.low_income_enrollment.to_f/li1.enrollment.to_f
       else
-        @percLowIncome1 = li1.low_income_enrollment/li1.enrollment
+        @percLowIncome1 = 0
       end
       li2 = DataPublicSchoolLowIncome.where(state_school_id: s2.state_school_id).where(academic_year_start: @year).uniq.take
       if (li2 != nil && li2.low_income_enrollment != nil && li2.enrollment != nil)
-        @percLowIncome2 = li2.low_income_enrollment/li2.enrollment
+        @percLowIncome2 = li2.low_income_enrollment.to_f/li2.enrollment.to_f
       else
-        @percLowIncome2 = 0
+        @percLowIncome2 = 0.2
       end
     end
   end

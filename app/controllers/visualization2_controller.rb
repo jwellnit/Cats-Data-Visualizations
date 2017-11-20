@@ -15,13 +15,13 @@ class Visualization2Controller < ApplicationController
         if (cc != nil && cg != nil && cc.total_cohort != nil && cg.total_grads != nil)
           districtCohorts = districtCohorts + cc.total_cohort
           districtGrads = districtGrads + cg.total_grads
-          @schoolGradRate[c.school_name] = (cg.total_grads/cc.total_cohort) * 100
+          @schoolGradRate[c.school_name] = (cg.total_grads.to_f/cc.total_cohort.to_f) * 100
         else
           @schoolGradRate[c.school_name] = 0
         end
       end
       if (districtCohorts != 0)
-        @districtGradRate = (districtGrads/districtCohorts) * 100
+        @districtGradRate = (districtGrads.to_f/districtCohorts.to_f) * 100
       else
         @districtGradRate = 0
       end
@@ -40,7 +40,7 @@ class Visualization2Controller < ApplicationController
         end
       end
       if (districtTotalEnroll != 0)
-        @districtAttendanceRate = districtWeightedRates/districtTotalEnroll
+        @districtAttendanceRate = districtWeightedRates.to_f/districtTotalEnroll.to_f
       else
         @districtAttendanceRate = 0
       end
