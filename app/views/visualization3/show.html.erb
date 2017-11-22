@@ -34,8 +34,12 @@
         };
 
         //create + draw chart a
-        var chart = new google.visualization.PieChart(document.getElementById('schoolA_chart_div'));
-        chart.draw(data, options);
+        if(low != 0 && oth != 0){
+          var chart = new google.visualization.PieChart(document.getElementById('schoolA_chart_div'));
+          chart.draw(data, options);
+        }else{
+          var output = document.getElementById('schoolA_chart_div').innerHTML = "DATA UNAVAILABLE";
+        }
       }
 
       function drawSchoolB(){
@@ -59,9 +63,13 @@
           is3D: true,
         };
 
-        //create and draw chart
-        var chart = new google.visualization.PieChart(document.getElementById('schoolB_chart_div'));
-        chart.draw(data, options);
+        //create + draw chart b
+        if(low != 0 && oth != 0){
+          var chart = new google.visualization.PieChart(document.getElementById('schoolB_chart_div'));
+          chart.draw(data, options);
+        }else{
+          var output = document.getElementById('schoolB_chart_div').innerHTML = "DATA UNAVAILABLE";
+        }
       }
       
      $(window).on("throttledresize", function (event) {
