@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8"> 
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="Cats-Data-Visualizations/app/assets/stylesheets/bootrstrap.min.css”>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -12,7 +12,7 @@
 <%= form_tag("/visualization1/:id(.:format)", method: "get") do %>
   <h2>Map of Districts by Full-Time Teacher Percentage</h2>
   <%= label_tag(:year, "Academic Year Start:") %>
-  <%= select_tag(:year, options_for_select(@years)) %>
+  <%= select_tag(:year, options_for_select(@years1)) %>
   <%= label_tag(:county, "County:") %>
   <%= select_tag(:county, options_for_select(@counties)) %>
   <%= submit_tag("Go") %>
@@ -21,7 +21,7 @@
 <%= form_tag("/visualization2/:id(.:format)", method: "get") do %>
   <h2>Side-by-Side Bar Chart of 4-Year Graduation Rate and Attendance Rate for School and Distric</h2>
   <%= label_tag(:year, "Academic Year Start:") %>
-  <%= select_tag(:year, options_for_select(@years)) %>
+  <%= select_tag(:year, options_for_select(@years2)) %>
   <%= label_tag(:district, "District:") %>
   <%= select_tag(:district, options_for_select(@districts)) %>
   <%= submit_tag("Go") %>
@@ -30,7 +30,7 @@
 <%= form_tag("/visualization3/:id(.:format)", method: "get") do %>
   <h2>Pie Charts of Low-Income Students with Graduation Rate and Attendance Rate for Two Schools</h2>
   <%= label_tag(:year, "Academic Year Start:") %>
-  <%= select_tag(:year, options_for_select(@years)) %>
+  <%= select_tag(:year, options_for_select(@years3)) %>
   <%= label_tag(:school1, "School 1:") %>
   <%= select_tag(:school1, options_for_select(@schools)) %>
   <%= label_tag(:school2, "School 2:") %>
