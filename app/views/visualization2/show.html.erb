@@ -12,114 +12,98 @@
       google.charts.setOnLoadCallback(drawChart);
 
 
-                        //function
-                        function drawChart() {
+        //function
+        function drawChart() {
 
                       var data = new google.visualization.DataTable();
                             data.addColumn('string', 'School');
                             data.addColumn('number', 'Graduation Rate');
-                                                                data.addColumn('number', 'Attendance');
+                            data.addColumn('number', 'Attendance');
 
-                                                          // data.addRows([
-  //                                                                        ['School One', 89, 69],
-  //                                                                                                                 ['School Two', 25, 50],
-  //                                                                                                                  ['School Three', 90, 85]
-  //                                                                       ]);
+                         
 
-  data.addRows([
+        data.addRows([
 
 
-                                                                                                                 //add schools
-                                                                                                                                                 <% @schools.each do |c|%>
-                                                                                                                                                         ["<%= c%>", <%=  @schoolGradRate[c]%>, <%=  @schoolAttendanceRate[c]%>],
-                                                                                                                                                 <% end %>
-                                                                                                          //add district
-
-                                                                                                           // ["<%= @district%>", <%= @districtGradRate%>, <%= @districtAttendanceRate%>]
-
-
-                                        ]);
+             //add schools
+               <% @schools.each do |c|%>
+		<% if ((@schoolGradRate[c] != 0) &&  (@schoolAttendanceRate[c] != 0)) %>
+		   ["<%= c%>", <%=  @schoolGradRate[c]%>, <%=  @schoolAttendanceRate[c]%>],
+		<% end %> // end of first if
+		<% if ((@schoolGradRate[c] != 0) &&  (@schoolAttendanceRate[c] == 0)) %>
+		   ["<%= c%>", <%=  @schoolGradRate[c]%>, -10],
+	        <% end %> // end of second if
+		<% if ((@schoolGradRate[c] == 0) &&  (@schoolAttendanceRate[c] != 0)) %>
+		    ["<%= c%>", -10,  <%=  @schoolAttendanceRate[c]%>],
+		<% end %> // end of third if
+		<% if ((@schoolGradRate[c] == 0) &&  (@schoolAttendanceRate[c] == 0)) %>
+		   ["<%= c%>", -10,  -10],
+	        <% end %> // end of third if
+               <% end %> //end of for
+             //add district
+             ["<%= @district%>", <%= @districtGradRate%>, <%= @districtAttendanceRate%>]
+             ]); 
+		// end of addRows
                       var options = {
-                        title: 'Graduation Rate and Attendance Rate',
+                        title: "<%= @district%>",
                         chartArea: {width: '50%'},
-                                                colors: ['#B8860B', '#9400D3'],
+                        colors: ['#B8860B', '#9400D3'],
                               vAxis: {
-                                                           title: 'Schools',
-                                                           minValue: 0,
-                                                           textStyle: {
-                                                             bold: true,
-                                                             fontSize: 14,
-                                                             color: '#4d4d4d'
-                                                   },
-                             }
-                      };
+                                      title: 'Schools',
+                                      minValue: 0,
+                                      textStyle: {
+                                                   bold: true,
+                                                   fontSize: 14,
+                                                   color: '#4d4d4d'
+                                                 }, //end text
+                                      },
+      																			//end of vAxis
+     
+                             hAxis: {
+                                     title: 'Graduation Rate and Attendance Rate',
+                                     minValue: 0,
+      																		 textStyle: {
+                                                 bold: true,
+                                                 fontSize: 14,
+                                                 color: '#4d4d4d'
+                                                 }
+      																								 //end text
+                                     }
+      																		 //end of hAxis
+                      }; 
+		//end of options
+											
+	//This variable is used to see if there is any data within the graph
+	       var empty = true;
+																			
+		//this loop is used for checking if there is no data for the graph	
+              	     <% @schools.each do |c|%>
+		     <% if ((@schoolGradRate[c] != 0) || (@schoolAttendanceRate[c] != 0)) %>
+			 empty = false;
+		     <% end %> // end of if/else statment						  
+                    <% end %> //end of for
+											
+											
+		//if the variable empty is still true do not display the graph 
+	        //else display the graph
+	        if (empty == true){
+		  $("#Bar_chart_div").append(" *Sorry, no information is avaliable for the year and district selected.")
+		}//end of if
+	        else{
                       var chart = new google.visualization.BarChart(document.getElementById('Bar_chart_div'));
                       chart.draw(data, options);
-                            }
+		}//end of else											
+											
+	} 
+	//end of drawChart
 </script>
  </head>
-                                 <body>
-                                          <div id="Bar_chart_div"> </div>
-                                 </body>
-</html><!-- This code is adapted from an existing code on Google Charts. Thus this code does use Google's Chart API -->
-<html>
- <head>
-   <%= stylesheet_link_tag 'application', media: 'all' %>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-
-     //Load package from google charts
-      google.charts.load('current', {'packages':['corechart', 'bar']});
-
-    //Set up the chart
-      google.charts.setOnLoadCallback(drawChart);
-
-
-			//function
-			function drawChart() {
-
-						var info = ['School', 'Graduation Rate', 'Attendance'];
-
-						while( @schools != nil ){
-							info.push(<%= @schools%>, <%= @schoolGradRate%>, <%= @schoolAttendanceRate%>);
-						}
-
-						var data = google.visualization.arrayToDataTable(info);
-
-			      var options = {
-			        title: 'Graduation Rate and Attendance Rate',
-			        chartArea: {width: '50%'},
-			        hAxis: {
-			          title: 'Graduation Rate and Attendance Rate',
-			          minValue: 0,
-			          textStyle: {
-			            bold: true,
-			            fontSize: 12,
-			            color: '#4d4d4d'
-			          },
-			          titleTextStyle: {
-			            bold: true,
-			            fontSize: 18,
-			            color: '#4d4d4d'
-			          }
-			        },
-			        vAxis: {
-			          title: 'Schools',
-			          textStyle: {
-			            fontSize: 14,
-			            bold: true,
-			            color: '#848484'
-			          },
-			          titleTextStyle: {
-			            fontSize: 14,
-			            bold: true,
-			            color: '#848484'
-			          }
-			        }
-			      };
-			      var chart = new google.visualization.BarChart(document.getElementById('Bar_chart_div'));
-			      chart.draw(data, options);
-			    }
-
- </head>
+        <body>
+          <div id="Bar_chart_div" style="width: 100%; height: 500px;"> </div>
+	<pre>--Note: 
+&#9900 If the data displayed is negative it denotes that there was no available data for the selected year and District.
+&#9900 he overall average for the Distict may vary from what is displayed above because not all schools provided 
+ the required information needed to obtain the actual percentage.
+	</pre>
+         </body>
 </html>
