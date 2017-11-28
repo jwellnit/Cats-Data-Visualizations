@@ -19,8 +19,8 @@ Rails.application.routes.draw do
 
   #root 'exam_demo#index'
 
-  root 'home_page#index'
- #root 'visualization1#show'
+#  root 'home_page#index'
+ root 'visualization1#show'
 
  # root 'visualization3#show'
 
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 # root 'visualiztion2#show'
 
 
-
+#
 
   resources :exam_demo, :only => [:index, :create]
   resources :school, :only => [:index, :show]

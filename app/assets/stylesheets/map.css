@@ -1,66 +1,42 @@
-/*.subunit.SCT { fill: #ddc; }
-.subunit.WLS { fill: #cdd; }
-.subunit.NIR { fill: #cdc; }
-.subunit.ENG { fill: #dcd; }
-.subunit.IRL { display: none; }*/
-
-/*.padistrict.id1402 { fill: #7dc; }
-.padistrict.id702 {fill: #c7d; }
-.padistrict.id901 {fill: #f00; }
-.padistrict.id404 {fill: #3cd; }
-.padistrict.id501 {fill: #ab2; }*/
-
-/*BELOW MINE*/
 /*body{
+  font-family: sans-serif;
+  margin: 30px;
+}
+
+svg{
+  border: 1px solid black;
   background-color: white;
 }
 
-h1{
-  color: blue;
-}
-
 .padistrict{
-  fill: none;
-  stroke: #aeaeae;
-  stroke-width: 1px;
-  stroke-linejoin: round;
-}*/
+  fill: #f00;
+}
 
 div.tooltip{
   position: absolute;
   text-align: center;
-  width: 160px;
-  height: 28px;
-  padding: 2px;
-  font: 12px sans-serif;
+  width: 250px;
+  height: 70px;
+  padding: 10px;
+  font-size: 20px;
   background: lightsteelblue;
   border: 0px;
-  border-radius: 8px;
+  border-radius: 50px;
   pointer-events: none;
 }
-/*.graticule{
-  fill: none;
-  stroke: #000;
-  stroke-opacity: 0.348;
+
+path:hover{
+  stroke: white;
   stroke-width: 1px;
+  fill-opacity: .7;
 }
 
-.graticule.outline{
-  stroke: #333;
-  stroke-opacity: 1;
-  stroke-width: 1.5px;
+.legendTitle{
+  font-size: 20px;
 }
 
-.padistrict path:hover {
- opacity: 0.5;
+rect{
+  stroke: black;
+  stroke-width: 2px;
 }
-
-.tooltip {
- font-weight: bold;
- padding: 0.5rem;
- border: 1px solid silver;
- }
-
- .hidden {
- display: none;
- }*/
+*/
