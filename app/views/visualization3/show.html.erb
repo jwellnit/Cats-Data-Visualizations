@@ -76,39 +76,23 @@
       }
     
     </script>
-    
-  <style>
-    #table, th, td {
-      border: 1px solid white;
-      border-collapse: collapse;
-      width: 10%;
-    }
-    #schoolA_chart_div{
-      width: 50%;
-      height: 80%;
-    }
-    #schoolB_chart_div{
-      width: 50%;
-      height: 80%;
-    }
-  </style>
 
-  </head>
+ </head>
   <body>
-    <table class = 'columns'>
-      <tr>
+    <table style="height:100%;width:100%; position: absolute; top: 0; bottom: 0; left: 0; right: 0;border:1px solid">
+      <tr style = "height: 10%;">
         <td><%= @school1 %> <%= @year%> </td>
         <td><%= @school2 %> <%= @year%> </td>
       </tr>
-      <tr>
+      <tr style = "height: 70%;">
       <td><div id="schoolA_chart_div"></div></td>
       <td><div id="schoolB_chart_div"></div></td>
       </tr>
-      <tr>
+      <tr style="height: 10%;">
         <td>Avg Attendance Rate Per Student: <%= @attendanceRate1 %></td>
         <td>Avg Attendance Rate Per Student: <%= @attendanceRate2 %></td>
       </tr>
-      <tr>
+      <tr style = "height: 10%;">
         <td>Grad Rate: <%= @gradRate1 - (@gradRate1 %1) %> </td>
         <td>Grad Rate: <%= @gradRate2 - (@gradRate2 %1) %></td>
       </tr>
