@@ -79,14 +79,14 @@
 
  </head>
   <body>
-    <table style="height:100%;width:100%; position: absolute; top: 0; bottom: 0; left: 0; right: 0;border:1px solid">
+    <table style="height:100%; width:100%; position: absolute; top: 0; bottom: 0; left: 0; right: 0;">
       <tr style = "height: 10%;">
         <td><%= @school1 %> <%= @year%> </td>
         <td><%= @school2 %> <%= @year%> </td>
       </tr>
       <tr style = "height: 70%;">
-      <td><div id="schoolA_chart_div"></div></td>
-      <td><div id="schoolB_chart_div"></div></td>
+      <td style = "padding: 0;"><div style = "height:100%; width:100%; position: relative;" id="schoolA_chart_div"></div></td>
+      <td style = "padding: 0;"><div style = "height:100%; width:100%; position: relative;" id="schoolB_chart_div"></div></td>
       </tr>
       <tr style="height: 10%;">
         <td>Avg Attendance Rate Per Student: <%= @attendanceRate1 %></td>
