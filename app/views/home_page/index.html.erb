@@ -17,7 +17,7 @@
 <% end %>
 
 <%= form_tag("/visualization2/:id(.:format)", method: "get") do %>
-  <h2>Side-by-Side Bar Chart of 4-Year Graduation Rate and Attendance Rate for School and Distric</h2>
+  <h2>Side-by-Side Bar Chart of 4-Year Graduation Rate and Attendance Rate for School and District</h2>
   <%= label_tag(:year, "Academic Year Start:") %>
   <%= select_tag(:year, options_for_select(@years2)) %>
   <%= label_tag(:district, "District:") %>
