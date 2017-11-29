@@ -8,7 +8,7 @@ class Visualization1Controller < ApplicationController
         df = DataDistrictFullTimePersonnel.where(state_lea_id: d).where(academic_year_start: @year).uniq.take
         dfp = DataDistrictFullAndPartTimePersonnel.where(state_lea_id: d).where(academic_year_start: @year).uniq.take
         if (df != nil && df.prof_personnel != nil && dfp != nil && dfp.prof_personnel != nil)
-          @fullTime[d] = df.prof_personnel/dfp.prof_personnel.to_f
+          @fullTime[d] = (df.prof_personnel/dfp.prof_personnel.to_f)*100
         else
           @fullTime[d] = 0
         end
