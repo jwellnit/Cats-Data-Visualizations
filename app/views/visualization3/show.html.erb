@@ -76,8 +76,8 @@
       }
 	    
 function calc(){
-      var attendanceA = <%= @attendanceRate1 %></td>;
-      var attendanceB = <%= @attendanceRate2 %></td>;
+      var attendanceA = <%= @attendanceRate1 %>;
+      var attendanceB = <%= @attendanceRate2 %>;
       var gradA = <%= @gradRate1 - (@gradRate1 %1) %> ;
       var gradB = <%= @gradRate2 - (@gradRate2 %1) %> ;
       document.getElementById('attendA').innerHTML = attendanceA;
@@ -102,7 +102,7 @@ function calc(){
       <td style = "padding: 0;"><div style = "height:100%; width:100%; position: relative;" id="schoolB_chart_div"></div></td>
       </tr>
       <tr style="height: 10%;">
-        <td>Avg Attendance Rate Per Student: <span id="attendA"></span></div> </td>
+        <td>Avg Attendance Rate Per Student: <span id="attendA"></span></td>
         <td>Avg Attendance Rate Per Student: <span id="attendB"></span></td>
       </tr>
       <tr style = "height: 10%;">
