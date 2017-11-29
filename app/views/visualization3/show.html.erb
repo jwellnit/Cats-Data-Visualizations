@@ -2,21 +2,21 @@
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-    
+
       // Load package from google charts
       google.charts.load('current', {'packages':['corechart']});
-      
+
       // Draw the 2 pie charts
       google.charts.setOnLoadCallback(drawSchoolA);
       google.charts.setOnLoadCallback(drawSchoolB);
-      
+
       //draw School A chart
       function drawSchoolA() {
-        
+
         //set up data
         var low = <%= @percLowIncome1%>*100 ;
         var oth = (1 - <%= @percLowIncome1 %>)*100 ;
-        
+
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Type');
         data.addColumn('number', 'Percentage');
@@ -24,14 +24,14 @@
           ['Low Income', low],
           ['Other', oth]
         ]);
-        
+
         //create specifications
         var options = {
           title: 'Percentage Low Income vs Attendance vs Grad Rate',
           colors: ['#fe6f5e','#3d0c02'],
           is3D: true,
         };
-        
+
         //create + draw chart a
         if(low != -100){
           var chart = new google.visualization.PieChart(document.getElementById('schoolA_chart_div'));
@@ -40,13 +40,13 @@
           var output = document.getElementById('schoolA_chart_div').innerHTML = "DATA DOES NOT EXIST OR UNAVAILABLE";
         }
       }
-      
+
       function drawSchoolB(){
-        
+
 	//set up data
         var low = <%= @percLowIncome2%>*100 ;
         var oth = (1 - <%=@percLowIncome2%>)*100;
-        
+
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Type');
         data.addColumn('number', 'percentage');
@@ -54,24 +54,24 @@
           ['Low Income', low],
           ['Other', oth]
         ]);
-        
+
         //set up chart specifications
         var options = {
           title: 'Percentage Low Income vs Attendance vs Grad Rate',
           colors: ['#3c1e62', '#aa8dc8'],
           is3D: true,
         };
-        
+
         //create and draw chart b
         if(low != -100){
           var chart = new google.visualization.PieChart(document.getElementById('schoolB_chart_div'));
           chart.draw(data, options);
-          
+
           window.addEventListener('resize', function() {
             chart.draw(data, options);
           }, false);
         }else{
-          var output = document.getElementById('schoolA_chart_div').innerHTML = "DATA DOES NOT EXIST OR UNAVAILABLE";
+          var output = document.getElementById('schoolB_chart_div').innerHTML = "DATA DOES NOT EXIST OR UNAVAILABLE";
         }
       }
     
