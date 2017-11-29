@@ -1,22 +1,44 @@
 <html>
   <head>
+    <script>
+      function calc(){
+      var attendA = <%= @attendanceRate1 %>;
+      var attendB = <%= @attendanceRate2 %>;
+      var gradA = <%= @gradRate1 - (@gradRate1 %1) %>;
+      var gradB = <%= @gradRate2 - (@gradRate2 %1) %>;
+      
+      if(attendA == -1){
+        attendA = "DATA UNAVAILABLE";
+      }
+      if(attendB == -1){
+        attendB = "DATA UNAVAILABLE";
+      }
+      if(gradA == -1){
+        gradA = "DATA UNAVAILABLE";
+      }
+      if(gradB = -1){
+        gradB = "DATA UNAVAILABLE";
+      }
+      
+      document.getElementById("aA").innerHTML = attendA;
+      document.getElementById("aB").innerHTML = attendB;
+      document.getElementById("gA").innerHTML = gradA;
+      document.getElementById("gB").innerHTML = gradB;
+  }
+  </script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-
+    
       // Load package from google charts
       google.charts.load('current', {'packages':['corechart']});
-
       // Draw the 2 pie charts
       google.charts.setOnLoadCallback(drawSchoolA);
       google.charts.setOnLoadCallback(drawSchoolB);
-
       //draw School A chart
       function drawSchoolA() {
-
         //set up data
         var low = <%= @percLowIncome1%>*100 ;
         var oth = (1 - <%= @percLowIncome1 %>)*100 ;
-
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Type');
         data.addColumn('number', 'Percentage');
@@ -24,14 +46,12 @@
           ['Low Income', low],
           ['Other', oth]
         ]);
-
         //create specifications
         var options = {
           title: 'Percentage Low Income vs Attendance vs Grad Rate',
           colors: ['#fe6f5e','#3d0c02'],
           is3D: true,
         };
-
         //create + draw chart a
         if(low != -100){
           var chart = new google.visualization.PieChart(document.getElementById('schoolA_chart_div'));
@@ -42,11 +62,9 @@
       }
 
       function drawSchoolB(){
-
 	//set up data
         var low = <%= @percLowIncome2%>*100 ;
         var oth = (1 - <%=@percLowIncome2%>)*100;
-
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Type');
         data.addColumn('number', 'percentage');
@@ -54,19 +72,16 @@
           ['Low Income', low],
           ['Other', oth]
         ]);
-
         //set up chart specifications
         var options = {
           title: 'Percentage Low Income vs Attendance vs Grad Rate',
           colors: ['#3c1e62', '#aa8dc8'],
           is3D: true,
         };
-
         //create and draw chart b
         if(low != -100){
           var chart = new google.visualization.PieChart(document.getElementById('schoolB_chart_div'));
           chart.draw(data, options);
-
           window.addEventListener('resize', function() {
             chart.draw(data, options);
           }, false);
@@ -74,22 +89,10 @@
           var output = document.getElementById('schoolB_chart_div').innerHTML = "DATA DOES NOT EXIST OR UNAVAILABLE";
         }
       }
-	    
-function calc(){
-      var attendanceA = <%= @attendanceRate1 %>;
-      var attendanceB = <%= @attendanceRate2 %>;
-      var gradA = <%= @gradRate1 - (@gradRate1 %1) %> ;
-      var gradB = <%= @gradRate2 - (@gradRate2 %1) %> ;
-      document.getElementById('attendA').innerHTML = attendanceA;
-      document.getElementById('attendB').innerHTML = attendanceB;
-      document.getElementById('gA').innerHTML = gradA;
-      document.getElementById('gB').innerHTML = gradB;
-    }
-    
-    </script>
+  </script>
 
  </head>
-  <body>
+  <body onload = "calc()">
     <table style="height:100%; width:100%; position: absolute; top: 0; bottom: 0; left: 0; right: 0;">
 	    <col width = 50%>
 	    <col width = 50%>
@@ -102,12 +105,12 @@ function calc(){
       <td style = "padding: 0;"><div style = "height:100%; width:100%; position: relative;" id="schoolB_chart_div"></div></td>
       </tr>
       <tr style="height: 10%;">
-        <td>Avg Attendance Rate Per Student: <span id="attendA"></span></td>
-        <td>Avg Attendance Rate Per Student: <span id="attendB"></span></td>
+        <td>Avg Attendance Rate Per Student: <span id = "aA"></span></td>
+        <td>Avg Attendance Rate Per Student: <span id = "aB"></span></td>
       </tr>
       <tr style = "height: 10%;">
-        <td>Grad Rate: <span id="gA"></span></td>
-        <td>Grad Rate: <span id="gB"></span></td>
+        <td>Grad Rate: <span id = "gA"></span></td>
+        <td>Grad Rate: <span id = "gB"></span></td>
       </tr>
     </table>
   </body>
