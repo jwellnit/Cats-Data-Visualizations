@@ -74,6 +74,17 @@
           var output = document.getElementById('schoolB_chart_div').innerHTML = "DATA DOES NOT EXIST OR UNAVAILABLE";
         }
       }
+	    
+function calc(){
+      var attendanceA = <%= @attendanceRate1 %></td>;
+      var attendanceB = <%= @attendanceRate2 %></td>;
+      var gradA = <%= @gradRate1 - (@gradRate1 %1) %> ;
+      var gradB = <%= @gradRate2 - (@gradRate2 %1) %> ;
+      document.getElementById('attendA').innerHTML = attendanceA;
+      document.getElementById('attendB').innerHTML = attendanceB;
+      document.getElementById('gA').innerHTML = gradA;
+      document.getElementById('gB').innerHTML = gradB;
+    }
     
     </script>
 
@@ -91,12 +102,12 @@
       <td style = "padding: 0;"><div style = "height:100%; width:100%; position: relative;" id="schoolB_chart_div"></div></td>
       </tr>
       <tr style="height: 10%;">
-        <td>Avg Attendance Rate Per Student: <%= @attendanceRate1 %></td>
-        <td>Avg Attendance Rate Per Student: <%= @attendanceRate2 %></td>
+        <td>Avg Attendance Rate Per Student: <span id="attendA"></span></div> </td>
+        <td>Avg Attendance Rate Per Student: <span id="attendB"></span></td>
       </tr>
       <tr style = "height: 10%;">
-        <td>Grad Rate: <%= @gradRate1 - (@gradRate1 %1) %> </td>
-        <td>Grad Rate: <%= @gradRate2 - (@gradRate2 %1) %></td>
+        <td>Grad Rate: <span id="gA"></span></td>
+        <td>Grad Rate: <span id="gB"></span></td>
       </tr>
     </table>
   </body>
